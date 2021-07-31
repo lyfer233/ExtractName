@@ -1,19 +1,31 @@
 # What these file?
-To extract the gene name using API in PubTator, **PubTatorRead.py** is reading gene name from "Export Annotations".
-
+To extract the gene name using API in PubTator:
+- *PubTator_read.py* is reading gene name from "Export Annotations".
+- *PubTator_submit.py* is transforme pdf into json,then submit json to API.
+- *PubTator_retrieve.py* is retrieve what has handled json by a session number.
+- *pdf_file* was used storage your upload pdf.
 # How to use it?
 
 ## Export Annotations
-Input your need format, type, identifiers, then gene name output in the "gene_name.csv"
+1. run it in command line
+```
+python PubTator_retrieve.py
+```
+2. Input your need format, type, identifiers in order
+3. then gene name output in the *gene_name.csv*
 
-## Process Raw Text
-Suppose we have only pdf format.Then we transform pdf into json in Firstly.
-### PDF to JSON
-1. Download and install https://github.com/modesty/pdf2json tools.
+## Submit your pdf
+1. Taking your all pdf into *pdf_file*" **(this step is important)**
 2. run it in command line
 ```
-pdf2json -f [input directory or pdf file] -o [output directory]
+python PubTator_submit.py
 ```
-3. Using extract_text.py to extract text into json.
+3. All successful submit was storage into *SessionNumber.txt*
 
-### Submit JSON to PubTator
+## Retrieve your upload file
+
+1. run it in command line
+```
+python PubTator_retrieve.py
+```
+2. All gene name was taked into the *gene_name.csv*
