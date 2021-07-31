@@ -45,10 +45,16 @@ def process_file(file_format, file_type, process_list):
         file = requests.get(url).text
         if file_format == "pubtator":
             extract_pubtator(file)
+            with open("{}_{}.tutor".format(file_format, process_id), "w") as f:
+                f.write(file)
         elif file_format == "biocxml":
             extract_xml(file)
+            with open("{}_{}.xml".format(file_format, process_id), "w") as f:
+                f.write(file)
         elif file_format == "biocjson":
             extract_json(file)
+            with open("{}_{}.json".format(file_format, process_id), "w") as f:
+                f.write(file)
 
     print("extract all gene in documents!!!")
 
@@ -77,7 +83,6 @@ if __name__ == "__main__":
     # Input the string to storage list
     my_list = process_string()
     assert type(my_list) == type([])
-    print(my_list)
 
     if file_format == 'tator' and tator_type == 'pmcids':
         raise ValueError("pmcids can only be used to retrieve publications in biocxml or biocjson formats!!!")
